@@ -1,8 +1,10 @@
 import { Router } from 'express'
+import { userController } from './useCases/CreateGame'
+import { Request, Response } from 'express'
 const route = Router()
-import { CreateGameController } from './useCases/CreateGame/CreateGameController'
-const userController = new CreateGameController()
 
-route.post('/games', userController.handle)
+route.post('/games', (httpRequest: Request, httpResponse: Response) => {
+  userController.handle(httpRequest, httpResponse)
+})
 
 export default route

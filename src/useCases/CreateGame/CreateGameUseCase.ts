@@ -1,11 +1,11 @@
-import { ICreateGameDTO } from "./CreateGameDTO";
-import { getRepository } from 'typeorm'
-import { Game } from "../../entities/Game";
+import { ICreateGameDTO } from "./ICreateGameDTO";
+import { IGameRepository } from '../../repositories/IGameRepository'
+
 export class CreateGameUseCase {
 
-  async execute(data: ICreateGameDTO) {
-    const repository = getRepository(Game)
+  constructor(private gameRepository: IGameRepository) { }
 
-    await repository.save(data)
+  async execute(data: ICreateGameDTO) {
+    await this.gameRepository.save(data)
   }
 }
