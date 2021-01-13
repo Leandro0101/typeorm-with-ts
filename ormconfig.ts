@@ -1,5 +1,5 @@
 import { createConnection } from 'typeorm'
-createConnection({
+export const connection = createConnection({
    type: 'mysql',
    host: 'localhost',
    port: 3306,
