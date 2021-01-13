@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import { UserController } from './controllers/UserController'
 const route = Router()
-const userController = new UserController()
+import { CreateGameController } from './useCases/CreateGame/CreateGameController'
+const userController = new CreateGameController()
 
-route.post('/users', userController.create)
+route.post('/games', userController.handle)
 
 export default route
