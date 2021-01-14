@@ -5,7 +5,9 @@ export class CreateGameUseCase {
 
   constructor(private gameRepository: IGameRepository) { }
 
-  async execute(data: ICreateGameDTO) {
-    await this.gameRepository.save(data)
+  async execute(data: ICreateGameDTO): Promise<ICreateGameDTO> {
+    const { name, description, price } = await this.gameRepository.save(data)
+    
+    return { name, description, price }
   }
 }

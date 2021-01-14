@@ -1,4 +1,4 @@
 import { ICreateGameDTO } from '../useCases/CreateGame/ICreateGameDTO'
 export interface IGameRepository {
-  save(game: ICreateGameDTO): Promise<void>
+  save(game: ICreateGameDTO): Promise<ICreateGameDTO>
 }
