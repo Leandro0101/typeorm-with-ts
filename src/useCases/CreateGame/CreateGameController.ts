@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
-import { IController } from '../../protocols/Controller';
+import { MissingParamError } from '../../errors/MissingParamError';
+import { IController } from '../../protocols/IController';
 import { CreateGameUseCase } from "./CreateGameUseCase";
 export class CreateGameController implements IController {
 
@@ -8,6 +9,10 @@ export class CreateGameController implements IController {
   async handle(httpRequest: Request, httpResponse: Response): Promise<Response> {
 
     const { name, description, price } = httpRequest.body
+
+    if(!name){
+      return httpResponse.status(400).json({ error: new MissingParamError('name') });
+    }
 
     const game = await this.createGameUseCase.execute({ name, description, price })
 
