@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
-    "test": "jest"
+    "test": "jest --forceExit"
   },
   "dependencies": {
     "express": "^4.17.1",

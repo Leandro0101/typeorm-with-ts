@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
+import { IController } from '../../protocols/Controller';
 import { CreateGameUseCase } from "./CreateGameUseCase";
-export class CreateGameController {
-
+export class CreateGameController implements IController {
 
   constructor(private createGameUseCase: CreateGameUseCase) { }
 
