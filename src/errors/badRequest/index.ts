@@ -1,8 +1,5 @@
-type errorResponse = {
-  body: any,
-  statusCode: number
-}
+import { ErrorResponse } from '../../protocols/ErrorResponse'
 
-export const badRequest = (error: Error): errorResponse => {
-  return { body: error, statusCode: 400 }
+export const badRequest = (error: Error): ErrorResponse => {
+    return { error, statusCode: 400, message: error.message }
 }
