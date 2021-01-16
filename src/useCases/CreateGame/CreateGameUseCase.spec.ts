@@ -49,17 +49,17 @@ describe('CreateGameUseCase', () => {
     expect(response.status).toBe(201)
   })
 
-  // test('Should return the created game DTO', async () => {
-  //   const response = await request(app).post('/games').send({
-  //     name: 'any name',
-  //     description: 'any description',
-  //     price: 20
-  //   })
+  test('Should return the created game DTO', async () => {
+    const response = await request(app).post('/games').send({
+      name: 'any name',
+      description: 'any description',
+      price: 20
+    })
 
-  //   expect(response.body).toEqual({
-  //     name: 'any name',
-  //     description: 'any description',
-  //     price: 20
-  //   })
-  // })
+    expect(response.body).toEqual({
+      name: 'any name',
+      description: 'any description',
+      price: 20
+    })
+  })
 })
