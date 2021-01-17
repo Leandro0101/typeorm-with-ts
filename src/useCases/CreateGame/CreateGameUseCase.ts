@@ -17,8 +17,12 @@ export class CreateGameUseCase {
       }
     }
 
+    if (await this.gameRepository.findByName(data.name)) {
+      throw badRequest(new MissingParamError())
+    }
+
     const { name, description, price } = await this.gameRepository.save(data)
-    
+
     return { name, description, price }
   }
 }

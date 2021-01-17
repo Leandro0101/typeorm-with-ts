@@ -3,8 +3,15 @@ import { ICreateGameDTO } from '../../useCases/CreateGame/ICreateGameDTO'
 import { getRepository } from 'typeorm'
 import { Game } from '../../entities/Game'
 export class GameRepositoryTypeOrm implements IGameRepository {
-  save(game: ICreateGameDTO): Promise<ICreateGameDTO> {
+
+  public async save(game: ICreateGameDTO): Promise<ICreateGameDTO> {
     const repository = getRepository(Game)
-    return repository.save(game)
+    return await repository.save(game)
+  }
+
+  public async findByName(name: string): Promise<Game> {
+    const repository = getRepository(Game)
+    const games = await repository.find({ where: { name } })
+    return games[0]
   }
 }
