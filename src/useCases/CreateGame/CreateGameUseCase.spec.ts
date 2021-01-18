@@ -57,9 +57,19 @@ describe('CreateGameUseCase', () => {
     })
 
     expect(response.body).toEqual({
-      name: 'any name',
+      name: 'Os incríves',
       description: 'any description',
       price: 20
     })
+  })
+
+  test('Should return 200 if game already exists', async () => {
+    const response = await request(app).post('/games').send({
+      name: 'name',
+      description: 'any description',
+      price: 20
+    })
+
+    expect(response.status).toBe(400)
   })
 })
