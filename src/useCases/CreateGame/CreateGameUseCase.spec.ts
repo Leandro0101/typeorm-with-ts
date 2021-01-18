@@ -1,10 +1,14 @@
 import request from 'supertest'
 import app from '../../app'
 import { getConnection, createConnections } from 'typeorm'
+import { getRepository } from 'typeorm'
+import { Game } from '../../entities/Game'
 describe('CreateGameUseCase', () => {
 
   beforeAll(async () => {
     await createConnections()
+    const repository = getRepository(Game)
+    repository.clear()
   })
 
   afterAll(async () => {
@@ -51,7 +55,7 @@ describe('CreateGameUseCase', () => {
 
   test('Should return the created game DTO', async () => {
     const response = await request(app).post('/games').send({
-      name: 'any name',
+      name: 'Os incríves',
       description: 'any description',
       price: 20
     })
@@ -65,11 +69,18 @@ describe('CreateGameUseCase', () => {
 
   test('Should return 200 if game already exists', async () => {
     const response = await request(app).post('/games').send({
-      name: 'name',
+      name: 'Os incríves',
       description: 'any description',
       price: 20
     })
 
-    expect(response.status).toBe(400)
+    expect(response.status).toBe(200)
+    expect(response.body).toEqual({
+      "error": {
+        "name": "AlreadyExists"
+      },
+      "statusCode": 200,
+      "message": "You're trying save a resource that already exists"
+    })
   })
 })
