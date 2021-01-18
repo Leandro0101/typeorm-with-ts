@@ -1,7 +1,8 @@
 import { ICreateGameDTO } from "./ICreateGameDTO";
 import { IGameRepository } from '../../repositories/IGameRepository'
-import { badRequest } from '../../errors/badRequest';
-import { MissingParamError } from '../../errors/badRequest/MissingParamError';
+import Exception from '../../errors'
+import { MissingParamError } from '../../errors/MissingParamError';
+import { AlreadyExist } from '../../errors/AlreadyExist';
 
 export class CreateGameUseCase {
 
@@ -13,12 +14,12 @@ export class CreateGameUseCase {
 
     for (const field of requiredFields) {
       if (!data[field]) {
-        throw badRequest(new MissingParamError())
+        throw new Exception().handler(new MissingParamError(), 400)
       }
     }
 
     if (await this.gameRepository.findByName(data.name)) {
-      throw badRequest(new MissingParamError())
+      throw new Exception().handler(new AlreadyExist(), 200)
     }
 
     const { name, description, price } = await this.gameRepository.save(data)
