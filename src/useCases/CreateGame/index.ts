@@ -4,6 +4,6 @@ import { CreateGameUseCase } from './CreateGameUseCase'
 
 const gameRepository = new GameRepositoryTypeOrm
 const createGameUseCase = new CreateGameUseCase(gameRepository)
-const gameController = new CreateGameController(createGameUseCase)
+const createGameController = new CreateGameController(createGameUseCase)
 
-export { gameController }
+export { createGameController }

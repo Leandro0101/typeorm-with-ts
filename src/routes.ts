@@ -1,10 +1,16 @@
 import { Router } from 'express'
-import { gameController } from './useCases/CreateGame'
+import { createGameController } from './useCases/CreateGame'
+import { showAllGamesController } from './useCases/ShowAllGames'
 import { Request, Response } from 'express'
 const route = Router()
 
 route.post('/games', (httpRequest: Request, httpResponse: Response) => {
-  gameController.handle(httpRequest, httpResponse)
+  createGameController.handle(httpRequest, httpResponse)
 })
+
+route.get('/games', (httpRequest: Request, httpResponse: Response) => {
+  showAllGamesController.handle(httpRequest, httpResponse)
+})
+
 
 export default route

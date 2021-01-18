@@ -8,7 +8,7 @@ describe('CreateGameUseCase', () => {
   beforeAll(async () => {
     await createConnections()
     const repository = getRepository(Game)
-    repository.clear()
+    await repository.clear()
   })
 
   afterAll(async () => {
