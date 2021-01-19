@@ -3,5 +3,5 @@ import { ICreateGameDTO } from '../useCases/CreateGame/ICreateGameDTO'
 export interface IGameRepository {
   save(game: ICreateGameDTO): Promise<Game>
   findByName(name: string): Promise<Game | undefined>
-  findAll(): Promise<Game[]>
+  findAll(skip: number): Promise<Game[]>
 }

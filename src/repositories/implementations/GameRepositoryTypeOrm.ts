@@ -6,8 +6,11 @@ export class GameRepositoryTypeOrm implements IGameRepository {
 
   constructor(private repository: Repository<Game>) { }
 
-  async findAll(): Promise<Game[]> {
-    return await this.repository.find()
+  async findAll(skip: number): Promise<Game[]> {
+    return await this.repository.find({
+      skip: skip * 7,
+      take: 7
+    })
   }
 
   async save(game: ICreateGameDTO): Promise<Game> {

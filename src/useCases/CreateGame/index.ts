@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm'
+import { Repository } from 'typeorm'
 import { Game } from '../../entities/Game'
 import { GameRepositoryTypeOrm } from '../../repositories/implementations/GameRepositoryTypeOrm'
 import { CreateGameController } from './CreateGameController'
