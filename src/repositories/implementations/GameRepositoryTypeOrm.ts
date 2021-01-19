@@ -1,21 +1,26 @@
 import { IGameRepository } from '../IGameRepository'
 import { ICreateGameDTO } from '../../useCases/CreateGame/ICreateGameDTO'
-import { getRepository } from 'typeorm'
+import { Repository } from 'typeorm'
 import { Game } from '../../entities/Game'
 export class GameRepositoryTypeOrm implements IGameRepository {
+
+  constructor(private repository: Repository<Game>) { }
+
   async findAll(): Promise<Game[]> {
-    const repository = getRepository(Game)
-    return repository.find()
+    return await this.repository.find()
   }
 
-  async save(game: ICreateGameDTO): Promise<ICreateGameDTO> {
-    const repository = getRepository(Game)
-    return await repository.save(game)
+  async save(game: ICreateGameDTO): Promise<Game> {
+    const newGame = this.repository.create(game);
+
+    await this.repository.save(newGame)
+
+    return newGame
   }
 
   async findByName(name: string): Promise<Game> {
-    const repository = getRepository(Game)
-    const games = await repository.find({ where: { name } })
+    const games = await this.repository.find({ where: { name } })
     return games[0]
   }
 }
+

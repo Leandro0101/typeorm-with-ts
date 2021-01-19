@@ -1,16 +1,18 @@
 import { Router } from 'express'
+import { Request, Response } from 'express'
+import { getRepository } from 'typeorm'
+import { Game } from './entities/Game'
 import { createGameController } from './useCases/CreateGame'
 import { showAllGamesController } from './useCases/ShowAllGames'
-import { Request, Response } from 'express'
+
 const route = Router()
 
 route.post('/games', (httpRequest: Request, httpResponse: Response) => {
-  createGameController.handle(httpRequest, httpResponse)
+  return createGameController(getRepository(Game)).handle(httpRequest, httpResponse)
 })
 
 route.get('/games', (httpRequest: Request, httpResponse: Response) => {
-  showAllGamesController.handle(httpRequest, httpResponse)
+  return showAllGamesController(getRepository(Game)).handle(httpRequest, httpResponse)
 })
-
 
 export default route

@@ -3,18 +3,19 @@ import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Game {
   @PrimaryGeneratedColumn('uuid')
-  private readonly id: string;
+  readonly id: string;
 
   @Column()
-  private name: string;
+  name: string;
 
   @Column()
-  private description: string;
+  description: string;
 
   @Column()
-  private price: number;
+  price: number;
 
   constructor(props: Omit<Game, 'id'>) {
     Object.assign(this, props)
   }
 }
+

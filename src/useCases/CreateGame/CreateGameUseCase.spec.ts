@@ -6,14 +6,14 @@ import { Game } from '../../entities/Game'
 describe('CreateGameUseCase', () => {
 
   beforeAll(async () => {
-    await createConnections()
+    // await createConnections()
     const repository = getRepository(Game)
     await repository.clear()
   })
 
   afterAll(async () => {
-    const defaultConnection = getConnection('default')
-    await defaultConnection.close()
+    // const defaultConnection = getConnection('default')
+    // await defaultConnection.close()
   })
 
   test('Should return 400 if no name is provided', async () => {

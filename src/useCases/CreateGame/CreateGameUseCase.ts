@@ -16,14 +16,13 @@ export class CreateGameUseCase {
       if (!data[field]) {
         throw new Exception().handler(new MissingParamError(), 400)
       }
+
+      if (await this.gameRepository.findByName(data.name)) {
+        throw new Exception().handler(new AlreadyExist(), 200)
+      }
+
+      const { name, description, price } = await this.gameRepository.save(data) 
+      return { name, description, price }
     }
-
-    if (await this.gameRepository.findByName(data.name)) {
-      throw new Exception().handler(new AlreadyExist(), 200)
-    }
-
-    const { name, description, price } = await this.gameRepository.save(data)
-
-    return { name, description, price }
   }
 }
