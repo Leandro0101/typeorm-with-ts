@@ -5,6 +5,12 @@ export class ShowAllGamesUseCase {
   constructor(private gameRepository: IGameRepository) { }
 
   async execute(skip: number): Promise<Game[]> {
-    return this.gameRepository.findAll(skip)
+
+    const games = await this.gameRepository.findAll(skip)
+
+    console.log('=====GAMES=====')
+    console.log(games)
+
+    return games 
   }
 }
