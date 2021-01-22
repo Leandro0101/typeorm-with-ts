@@ -1,8 +1,5 @@
-/*
- * For a detailed explanation regarding each configuration property, visit:
- * https://jestjs.io/docs/en/configuration.html
- */
-
+const { compilerOptions } = require('./tsconfig.json')
+const { pathsToModuleNameMapper } = require('ts-jest')
 module.exports = {
   roots: ['<rootDir>/src'],
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
@@ -11,5 +8,7 @@ module.exports = {
   testEnvironment: "node",
   transform: {
     '.*\\.ts$': 'ts-jest'
-  }
+  },
+  preset: 'ts-jest',
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
 }

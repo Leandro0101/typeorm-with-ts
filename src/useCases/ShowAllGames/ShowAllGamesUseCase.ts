@@ -8,9 +8,6 @@ export class ShowAllGamesUseCase {
 
     const games = await this.gameRepository.findAll(skip)
 
-    console.log('=====GAMES=====')
-    console.log(games)
-
     return games 
   }
 }

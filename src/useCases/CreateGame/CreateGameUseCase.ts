@@ -2,8 +2,8 @@
 import { ICreateGameDTO } from "./ICreateGameDTO";
 import { IGameRepository } from '../../repositories/IGameRepository'
 import Exception from '../../errors'
-import { MissingParamError } from '../../errors/MissingParamError';
-import { AlreadyExist } from '../../errors/AlreadyExist';
+import { MissingParamError } from '@errors/MissingParamError';
+import { AlreadyExist } from '@errors/AlreadyExist';
 
 export class CreateGameUseCase {
 
