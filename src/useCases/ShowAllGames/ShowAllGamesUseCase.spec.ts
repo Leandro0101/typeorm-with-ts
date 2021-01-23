@@ -1,9 +1,10 @@
-import { createConnections, getConnection, getRepository } from 'typeorm'
+import { getRepository } from 'typeorm'
+import  Connection  from '../../typeorm'
 import { Game } from '../../entities/Game'
 import request from 'supertest'
 import app from '../../app'
 describe('ShowAllGamesUseCase', () => {
-
+  
   const games = [
     { name: 'FIFA 19', description: 'Soccer game', price: 210 },
     { name: 'Naruto Storm 3', description: 'Battle game', price: 75 },
@@ -29,22 +30,21 @@ describe('ShowAllGamesUseCase', () => {
     { name: 'State of Decay', description: 'Zombie game', price: 99.99 },
     { name: 'FIFA 21', description: 'Soccer Game', price: 210 },
   ]
-
+  
   beforeAll(async () => {
-    await createConnections()
+    await Connection.create()
     const repository = getRepository(Game)
     await repository.clear()
-
     for (const game of games) {
       await repository.save(game)
     }
   })
-
+  
   afterAll(async () => {
-    const defaultConnection = getConnection('default')
-    await defaultConnection.close()
+    await Connection.clear()
+    await Connection.close();
   })
-
+  
   test('Should return all games on the first page of the pagination', async () => {
     const { body } = await request(app).get('/games/1')
     expect(body.length).toBe(8)

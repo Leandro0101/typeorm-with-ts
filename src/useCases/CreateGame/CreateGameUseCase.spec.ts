@@ -3,17 +3,19 @@ import app from '../../app'
 import { getConnection, createConnections } from 'typeorm'
 import { getRepository } from 'typeorm'
 import { Game } from '../../entities/Game'
+import  Connection  from '../../typeorm'
 describe('CreateGameUseCase', () => {
 
   beforeAll(async () => {
-    await createConnections()
-    const repository = getRepository(Game)
-    await repository.clear()
+    await Connection.create()
+  })
+
+  beforeEach(async () => {
+    await Connection.clear()
   })
 
   afterAll(async () => {
-    const defaultConnection = getConnection('default')
-    await defaultConnection.close()
+    await Connection.close();
   })
 
   test('Should return 400 if no name is provided', async () => {
