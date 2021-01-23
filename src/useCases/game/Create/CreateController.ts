@@ -1,14 +1,14 @@
 import { Request, Response } from 'express'
 import { IController } from '@protocols/IController'
-import { CreateGameUseCase } from "./CreateGameUseCase"
-export class CreateGameController implements IController {
+import { CreateUseCase } from './CreateUseCase'
+export class CreateController implements IController {
 
-  constructor(private createGameUseCase: CreateGameUseCase) { }
+  constructor(private createUseCase: CreateUseCase) { }
 
   async handle(httpRequest: Request, httpResponse: Response): Promise<Response> {
 
     try {
-      const game = await this.createGameUseCase.execute(httpRequest.body)
+      const game = await this.createUseCase.execute(httpRequest.body)
       return httpResponse.status(201).json(game)
     } catch (error) {
       return httpResponse.status(error.statusCode).json(error)

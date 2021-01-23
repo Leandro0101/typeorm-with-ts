@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import { getRepository } from 'typeorm'
 import { Game } from './entities/Game'
 import { createGameController } from './useCases/game/Create'
-import { showAllGamesController } from './useCases/game/ShowAll'
+import { findAllGamesController } from './useCases/game/FindAll'
 
 const route = Router()
 
@@ -12,7 +12,7 @@ route.post('/games', (httpRequest: Request, httpResponse: Response) => {
 })
 
 route.get('/games/:page', (httpRequest: Request, httpResponse: Response) => {
-  return showAllGamesController(getRepository(Game)).handle(httpRequest, httpResponse)
+  return findAllGamesController(getRepository(Game)).handle(httpRequest, httpResponse)
 })
 
 export default route

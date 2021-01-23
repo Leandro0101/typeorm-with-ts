@@ -1,12 +1,12 @@
 import { Repository } from 'typeorm'
 import { Game } from '@entities/Game'
 import { GameRepositoryTypeOrm } from '@repositories/implementations/GameRepositoryTypeOrm'
-import { CreateGameController } from './CreateGameController'
-import { CreateGameUseCase } from './CreateGameUseCase'
+import { CreateController } from './CreateController'
+import { CreateUseCase } from './CreateUseCase'
 
-export const createGameController = (repository: Repository<Game>): CreateGameController => {
+export const createGameController = (repository: Repository<Game>): CreateController => {
   const gameRepository = new GameRepositoryTypeOrm(repository)
-  const createGameUseCase = new CreateGameUseCase(gameRepository)
+  const createUseCase = new CreateUseCase(gameRepository)
 
-  return new CreateGameController(createGameUseCase)
+  return new CreateController(createUseCase)
 }
