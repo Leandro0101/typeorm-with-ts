@@ -8,8 +8,8 @@ export class GameRepositoryTypeOrm implements IGameRepository {
 
   async findAll(skip: number): Promise<Game[]> {
     return await this.repository.find({
-      skip: (skip - 1) * 2,
-      take: 2
+      skip: (skip - 1) * 8,
+      take: 8
     })
   }
 
