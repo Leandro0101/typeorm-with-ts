@@ -1,8 +1,8 @@
 import { getRepository } from 'typeorm'
-import  Connection  from '../../typeorm'
-import { Game } from '../../entities/Game'
+import  Connection  from '../../../typeorm'
+import { Game } from '@entities/Game'
 import request from 'supertest'
-import app from '../../app'
+import app from '../../../app'
 describe('ShowAllGamesUseCase', () => {
   
   const games = [

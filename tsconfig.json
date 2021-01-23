@@ -11,7 +11,11 @@
     "forceConsistentCasingInFileNames": true ,
     "baseUrl":"./",
     "paths": {
-      "@errors/*": ["src/errors/*"]
+      "@errors/*": ["src/errors/*"],
+      "@createGameUseCase/*": ["src/useCases/game/Create/*"],
+      "@entities/*": ["src/entities/*"],
+      "@protocols/*": ["src/protocols/*"],
+      "@repositories/*": ["src/repositories/*"]
     }
   },
   "include": ["src/**/*.ts"]

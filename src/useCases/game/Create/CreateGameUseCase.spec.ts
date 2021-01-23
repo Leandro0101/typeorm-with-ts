@@ -1,9 +1,6 @@
 import request from 'supertest'
-import app from '../../app'
-import { getConnection, createConnections } from 'typeorm'
-import { getRepository } from 'typeorm'
-import { Game } from '../../entities/Game'
-import  Connection  from '../../typeorm'
+import app from '../../../app'
+import  Connection  from '../../../typeorm'
 describe('CreateGameUseCase', () => {
 
   beforeAll(async () => {

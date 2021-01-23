@@ -2,8 +2,8 @@ import { Router } from 'express'
 import { Request, Response } from 'express'
 import { getRepository } from 'typeorm'
 import { Game } from './entities/Game'
-import { createGameController } from './useCases/CreateGame'
-import { showAllGamesController } from './useCases/ShowAllGames'
+import { createGameController } from './useCases/game/Create'
+import { showAllGamesController } from './useCases/game/ShowAll'
 
 const route = Router()
 
