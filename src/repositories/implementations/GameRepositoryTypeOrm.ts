@@ -1,5 +1,5 @@
 import { IGameRepository } from '../IGameRepository'
-import { ICreateGameDTO } from 'src/useCases/game/Create/ICreateGameDTO'
+import { ICreateGameDTO } from '@createGameUseCase/ICreateGameDTO'
 import { Repository } from 'typeorm'
 import { Game } from '@entities/Game'
 export class GameRepositoryTypeOrm implements IGameRepository {

@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import { getRepository } from 'typeorm'
 import { Game } from './entities/Game'
 import { createGameController } from './useCases/game/Create'
-import { showAllGamesController } from './useCases/game/ShowAll'
+import { showAllGamesController } from './useCases/game/FindAll'
 
 const route = Router()
 

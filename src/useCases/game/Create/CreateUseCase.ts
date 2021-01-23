@@ -5,7 +5,7 @@ import Exception from '@errors/index'
 import { MissingParamError } from '@errors/MissingParamError';
 import { AlreadyExist } from '@errors/AlreadyExist';
 
-export class CreateGameUseCase {
+export class CreateUseCase {
 
   constructor(private gameRepository: IGameRepository) { }
 
