@@ -4,4 +4,5 @@ export interface IGameRepository {
   save(game: ICreateGameDTO): Promise<Game>
   findByName(name: string): Promise<Game | undefined>
   findAll(skip: number): Promise<Game[]>
+  findById(id: string): Promise<Game | undefined>
 }
