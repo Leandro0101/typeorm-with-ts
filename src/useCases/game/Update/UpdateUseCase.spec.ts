@@ -6,7 +6,7 @@ import app from '../../../app'
 describe('UpdateGameUseCase', () => {
   
   let repository
-
+  
   beforeAll(async () => {
     await Connection.create()
     repository = getRepository(Game)
@@ -24,7 +24,50 @@ describe('UpdateGameUseCase', () => {
     game = await repository.findOne(game.id) 
     
     const response = await request(app).put(`/games/${game.id}`).send({ name: 'game test atualizado', description: 'game test description', price: 22 })
-    console.log(response.body)
-    expect(8).toBe(8)
+    
+    const {  name, description, price } = response.body
+    expect({  name, description, price }).toEqual({ name: 'game test atualizado', description: 'game test description', price: 22 })
+    expect(response.status).toBe(200)
+  })
+  
+  
+  test('Should return 400 if no name is provided', async () => {
+    
+    let game = await repository.save({ name: 'game test', description: 'game test description', price: 11 })
+    
+    game = await repository.findOne(game.id) 
+    
+    const response = await request(app).put(`/games/${game.id}`).send({
+      description: 'any description',
+      price: 35.00
+    })
+    
+    expect(response.status).toBe(400)
+  })
+  
+  test('Should return 400 if no description is provided', async () => {
+    let game = await repository.save({ name: 'game test', description: 'game test description', price: 11 })
+    
+    game = await repository.findOne(game.id) 
+    
+    const response = await request(app).put(`/games/${game.id}`).send({
+      name: 'any name',
+      price: 35.00
+    })
+    
+    expect(response.status).toBe(400)
+  })
+  
+  test('Should return 400 if no price is provided', async () => {
+    let game = await repository.save({ name: 'game test', description: 'game test description', price: 11 })
+    
+    game = await repository.findOne(game.id) 
+    
+    const response = await request(app).put(`/games/${game.id}`).send({
+      name: 'any name',
+      description: 'any description',
+    })
+    
+    expect(response.status).toBe(400)
   })
 })
