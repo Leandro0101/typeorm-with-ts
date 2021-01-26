@@ -8,9 +8,12 @@ export class UpdateController implements IController {
   async handle(httpRequest: Request, httpResponse: Response) :Promise<Response> {
     
     const { id } = httpRequest.params
-    const { description, name, price } = httpRequest.body
-    const updatedGame = await this.updateGameUseCase.execute(id, name, description, price)
+    try {
+      const updatedGame = await this.updateGameUseCase.execute(id, httpRequest.body)     
+      return httpResponse.status(200).json(updatedGame)
+    } catch (error) {
+      return httpResponse.status(error.statusCode).json(error)
+    }
     
-    return httpResponse.status(200).json(updatedGame)
   }
 }
