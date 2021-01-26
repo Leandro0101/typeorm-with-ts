@@ -1,5 +1,5 @@
 
-import { ICreateGameDTO } from "./ICreateGameDTO";
+import { IGameDTO } from "../../../protocols/IGameDTO";
 import { IGameRepository } from '@repositories/IGameRepository'
 import Exception from '@errors/index'
 import { MissingParamError } from '@errors/MissingParamError';
@@ -9,7 +9,7 @@ export class CreateUseCase {
 
   constructor(private gameRepository: IGameRepository) { }
 
-  async execute(data: ICreateGameDTO): Promise<ICreateGameDTO> {
+  async execute(data: IGameDTO): Promise<IGameDTO> {
 
     const requiredFields = ['name', 'description', 'price']
 

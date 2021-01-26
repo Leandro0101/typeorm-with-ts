@@ -1,5 +1,5 @@
 import { IGameRepository } from '../IGameRepository'
-import { ICreateGameDTO } from '@createGameUseCase/ICreateGameDTO'
+import { IGameDTO } from '@protocols/IGameDTO'
 import { Repository } from 'typeorm'
 import { Game } from '@entities/Game'
 export class GameRepositoryTypeOrm implements IGameRepository {
@@ -17,7 +17,7 @@ export class GameRepositoryTypeOrm implements IGameRepository {
     })
   }
 
-  async save(game: ICreateGameDTO): Promise<Game> {
+  async save(game: IGameDTO): Promise<Game> {
     const newGame = this.repository.create(game);
 
     await this.repository.save(newGame)

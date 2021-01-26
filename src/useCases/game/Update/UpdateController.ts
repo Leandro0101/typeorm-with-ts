@@ -1,6 +1,6 @@
-import { IController } from "@protocols/IController";
+import { IController } from '@protocols/IController'
 import { Request, Response } from 'express'
-import { UpdateUseCase } from "./UpdateUseCase";
+import { UpdateUseCase } from './UpdateUseCase'
 export class UpdateController implements IController {
   
   constructor(private updateGameUseCase: UpdateUseCase){ }

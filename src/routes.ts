@@ -15,7 +15,7 @@ route.get('/games/:page', (httpRequest: Request, httpResponse: Response) =>
   findAllGamesController(getRepository(Game)).handle(httpRequest, httpResponse)
 )
 
-route.post('/games/:id', (httpRequest: Request, httpResponse: Response) =>
+route.put('/games/:id', (httpRequest: Request, httpResponse: Response) =>
   updateGameController(getRepository(Game)).handle(httpRequest, httpResponse)
 )
 

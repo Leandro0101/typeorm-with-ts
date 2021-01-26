@@ -1,7 +1,7 @@
 import { Game } from '@entities/Game';
-import { ICreateGameDTO } from '@createGameUseCase/ICreateGameDTO'
+import { IGameDTO } from '@protocols/IGameDTO'
 export interface IGameRepository {
-  save(game: ICreateGameDTO): Promise<Game>
+  save(game: IGameDTO): Promise<Game>
   findByName(name: string): Promise<Game | undefined>
   findAll(skip: number): Promise<Game[]>
   findById(id: string): Promise<Game | undefined>
