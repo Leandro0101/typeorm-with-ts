@@ -4,5 +4,5 @@ export interface IGameRepository {
   save(game: IGameDTO): Promise<Game>
   findByName(name: string): Promise<Game | undefined>
   findAll(skip: number): Promise<Game[]>
-  findById(id: string): Promise<Game | undefined>
+  findById(id: string): Promise<Game>
 }

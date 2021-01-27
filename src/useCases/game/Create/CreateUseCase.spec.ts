@@ -1,4 +1,6 @@
+import { Game } from '@entities/Game'
 import request from 'supertest'
+import { getRepository } from 'typeorm'
 import app from '../../../app'
 import  Connection  from '../../../typeorm'
 describe('CreateGameUseCase', () => {
@@ -8,7 +10,8 @@ describe('CreateGameUseCase', () => {
   })
 
   beforeEach(async () => {
-    await Connection.clear()
+    const repository = getRepository(Game)
+    await repository.clear()
   })
 
   afterAll(async () => {

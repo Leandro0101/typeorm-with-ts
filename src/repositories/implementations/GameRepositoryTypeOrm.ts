@@ -6,8 +6,9 @@ export class GameRepositoryTypeOrm implements IGameRepository {
 
   constructor(private repository: Repository<Game>) { }
 
-  async findById(id: string): Promise<Game | undefined> {
-    return await this.repository.findOne(id)
+  async findById(id: string): Promise<Game> {
+    const game = await this.repository.findOne(id) 
+    return game 
   }
 
   async findAll(skip: number): Promise<Game[]> {

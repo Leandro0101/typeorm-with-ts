@@ -31,17 +31,18 @@ describe('ShowAllGamesUseCase', () => {
     { name: 'FIFA 21', description: 'Soccer Game', price: 210 },
   ]
   
+  let repository
+  
   beforeAll(async () => {
     await Connection.create()
-    const repository = getRepository(Game)
-    await repository.clear()
+    repository = getRepository(Game)
     for (const game of games) {
       await repository.save(game)
     }
   })
   
   afterAll(async () => {
-    await Connection.clear()
+    await repository.clear()
     await Connection.close();
   })
   
