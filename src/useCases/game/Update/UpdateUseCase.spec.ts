@@ -44,4 +44,14 @@ describe('UpdateGameUseCase', () => {
     const response = await request(app).put(`/games/${game.id}`).send({ name: 'Street Soccer atualizado', description: 'Game very good atualizado' })
     expect(response.status).toBe(400)
   })
+
+  test('Should return 400 if name is empty', async() => {
+    const response = await request(app).put(`/games/${game.id}`).send({ name: ' ', description: 'Game very good atualizado', price: 89 })
+    expect(response.status).toBe(400)
+  })
+
+  test('Should return 400 if description is empty', async() => {
+    const response = await request(app).put(`/games/${game.id}`).send({ name: 'Street Soccer atualizado', description: ' ', price: 89 })
+    expect(response.status).toBe(400)
+  })
 })
