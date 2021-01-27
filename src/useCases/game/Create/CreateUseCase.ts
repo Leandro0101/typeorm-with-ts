@@ -14,7 +14,7 @@ export class CreateUseCase {
     const requiredFields = ['name', 'description', 'price']
 
     for (const field of requiredFields) {
-      if (!data[field]) {
+      if (!data[field] || !/[a-z]|[0-9]/ig.test(data[field])) {
         throw new Exception().handler(new MissingParamError(), 400)
       }
     }
