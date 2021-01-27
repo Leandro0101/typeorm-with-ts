@@ -10,6 +10,9 @@ describe('UpdateGameUseCase', () => {
   beforeAll(async () => {
     await Connection.create()
     repository = getRepository(Game)
+  })
+
+  beforeEach(async () => {
     game = await repository.save({ name: 'Street Soccer', description: 'Game very good', price: 99 })
   })
   
@@ -20,10 +23,15 @@ describe('UpdateGameUseCase', () => {
     await Connection.close();
   })
   
-  test('Test', async() => {
+  test('Should return the updated game', async() => {
     const response = await request(app).put(`/games/${game.id}`).send({ name: 'Street Soccer atualizado', description: 'Game very good atualizado', price: 89 })
     const { name, description, price } = response.body
     expect({ name, description, price }).toEqual({ name: 'Street Soccer atualizado', description: 'Game very good atualizado', price: 89 })
     expect(response.status).toBe(200)
+  })
+
+  test('Should return 400 if no name is provided', async() => {
+    const response = await request(app).put(`/games/${game.id}`).send({ description: 'Game very good atualizado', price: 89 })
+    expect(response.status).toBe(400)
   })
 })
