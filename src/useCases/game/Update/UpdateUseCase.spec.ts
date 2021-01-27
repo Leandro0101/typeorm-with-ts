@@ -22,7 +22,8 @@ describe('UpdateGameUseCase', () => {
   
   test('Test', async() => {
     const response = await request(app).put(`/games/${game.id}`).send({ name: 'Street Soccer atualizado', description: 'Game very good atualizado', price: 89 })
-    Eresponse.body
+    const { name, description, price } = response.body
+    expect({ name, description, price }).toEqual({ name: 'Street Soccer atualizado', description: 'Game very good atualizado', price: 89 })
     expect(response.status).toBe(200)
   })
 })
